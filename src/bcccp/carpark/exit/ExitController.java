@@ -1,3 +1,7 @@
+/** author Muhammad Javed
+    Student ID : 11636599
+	**/
+
 package bcccp.carpark.exit;
 
 import bcccp.carpark.Carpark;
@@ -146,10 +150,8 @@ public class ExitController
 167 			} 
 168 			// In-progress to do the further development 
 169 		default: 
-170 			 
-171 				
-	}
+           	break; 
+171 		} 
+170 			 }
 
-	
-	
 }
