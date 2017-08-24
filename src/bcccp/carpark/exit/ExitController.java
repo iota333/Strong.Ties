@@ -130,8 +130,24 @@ public class ExitController
 
 	@Override
 	public void carEventDetected(String detectorId, boolean detected) {
-		// TODO Auto-generated method stub
-		
+		 
+155 		log("Car Event Detected: " + detectorId + "Car Detected" + detected); 
+156 		switch (state) { 
+157 		case BLOCKED: 
+158 			if (detectorId.equals(insideSensor.getId()) && !detected) { 
+159 				setState(initState); 
+160 			} 
+161 			break; 
+162 		case IDLE: 
+163 			if (detectorId.equals(insideSensor.getId()) && detected) { 
+164 				setState(STATE.WAITING); 
+165 			} else if (detectorId.equals(outsideSensor.getId()) && detected) { 
+166 				setState(STATE.BLOCKED); 
+167 			} 
+168 			// In-progress to do the further development 
+169 		default: 
+170 			 
+171 				
 	}
 
 	
