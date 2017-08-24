@@ -1,3 +1,8 @@
+//Assignment 2
+// Student Name: Hassan Ali
+//Student ID: 11636525
+
+
 package bcccp.carpark.exit;
 
 import java.awt.EventQueue;
