@@ -93,26 +93,27 @@ public class AdhocTicket implements IAdhocTicket {
 		return paidDateTime > 0;
 	}
 
-
+	//This overrided method will set the exit date and time
 	@Override
 	public float getCharge() {
 		return this.charge;
 	}
 
+	//This overrided method will set the exit date and time
 
 	@Override
 	public void exit(long dateTime) {
 		
-		DateTime = dateTime;
+		exitDateTime = dateTime;
 	}
 
-
+        //This overrided method will return the exit date and time
 	@Override
 	public long getExitDateTime() {
                 return this.exitDateTime;
 	}
 
-
+	//This overrided method will return the status of exit
 	@Override
 	public boolean hasExited() {
 		return exitDateTime > 0;
