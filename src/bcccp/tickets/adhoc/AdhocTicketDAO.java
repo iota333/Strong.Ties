@@ -1,3 +1,6 @@
+/** author Muhammad Javed
+    Student ID : 11636599
+	**/
 package bcccp.tickets.adhoc;
 
 import java.util.List;
@@ -61,7 +64,7 @@ public class AdhocTicketDAO  implements IAdhocTicketDAO  {
 	}
 
 
-
+ //This overrided method will return the generated tickets
 	@Override
 	public List<IAdhocTicket> getCurrentTickets() {
 		return list.stream().filter(c -> c.isCurrent() == true).collect(Collectors.toList());
