@@ -78,46 +78,44 @@ public class AdhocTicket implements IAdhocTicket {
 		
 	}
 
+	//This overrided method will return the time and paid date
 
 	@Override
 	public long getPaidDateTime() {
-		// TODO Auto-generated method stub
-		return 0;
+        return this.paidDateTime;
+		
 	}
 
+	//This overrided method will return the paid status
 
 	@Override
 	public boolean isPaid() {
-		// TODO Auto-generated method stub
-		return false;
+		return paidDateTime > 0;
 	}
 
 
 	@Override
 	public float getCharge() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.charge;
 	}
 
 
 	@Override
 	public void exit(long dateTime) {
-		// TODO Auto-generated method stub
 		
+		DateTime = dateTime;
 	}
 
 
 	@Override
 	public long getExitDateTime() {
-		// TODO Auto-generated method stub
-		return 0;
+                return this.exitDateTime;
 	}
 
 
 	@Override
 	public boolean hasExited() {
-		// TODO Auto-generated method stub
-		return false;
+		return exitDateTime > 0;
 	}
 
 	
