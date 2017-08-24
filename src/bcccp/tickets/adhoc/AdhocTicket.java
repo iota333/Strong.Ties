@@ -1,4 +1,10 @@
+
 package bcccp.tickets.adhoc;
+/*
+Student Name: Hassan Ali
+Student ID: 11636525
+Assignment 2
+*/
 
 import java.util.Date;
 
@@ -11,34 +17,36 @@ public class AdhocTicket implements IAdhocTicket {
 	private long exitDateTime;
 	private float charge;
 	private String barcode;
+        private enum TICKET_STATE {Ticket_Issued, Car_Parked, Ticket_Paid, Car_Exited}
+	
+        private TICKET_STATE ticket_State;
 
-	
-	
 	public AdhocTicket(String carparkId, int ticketNo, String barcode) {
-		//TDO Implement constructor
+        this.carparkId = carparkId;
+        	this.ticketNo = ticketNo;
+        	this.barcode = barcode;
+		this.ticket_State = TICKET_STATE.Ticket_Issued;
+		
 	}
 
 
 	@Override
 	public int getTicketNo() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ticketNo;
+		
 	}
 
 
 	@Override
 	public String getBarcode() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.barcode;
 	}
 
 
 	@Override
 	public String getCarparkId() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.carparkId;
 	}
-
 
 	@Override
 	public void enter(long dateTime) {
