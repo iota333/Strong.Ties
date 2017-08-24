@@ -88,7 +88,27 @@ public class ExitController
 
 	@Override
 	public void ticketInserted(String ticketStr) {
-		// TODO Auto-generated method stub
+		if (state.equals(STATE.WAITING)) { 
+110 			if (ticketStr.substring(0, 1).equals('A')) { 
+111 				adhocTicket = carpark.getAdhocTicket(ticketStr); 
+112 				if (adhocTicket != null && adhocTicket.isPaid()) { 
+113 					setState(STATE.PROCESSED); 
+114 				} else { 
+115 					setState(STATE.REJECTED); 
+116 				} 
+117 			} else if (carpark.isSeasonTicketValid(ticketStr) && carpark.isSeasonTicketInUse(ticketStr)) { 
+118 				setState(STATE.PROCESSED); 
+119 				seasonTicketId = ticketStr; 
+120 			} else { 
+121 				ui.beep(); 
+122 				setState(STATE.REJECTED); 
+123 			} 
+124 		} else { 
+125 			ui.beep(); 
+126 			ui.discardTicket(); 
+127 			setState(STATE.REJECTED); 
+128 		} 
+
 		
 	}
 
@@ -96,8 +116,14 @@ public class ExitController
 
 	@Override
 	public void ticketTaken() {
-		// TODO Auto-generated method stub
-		
+		if (state.equals(STATE.PROCESSED)) { 
+138 			exitGate.raise(); 
+139 			setState(STATE.TAKEN); 
+140 		} else if (state.equals(STATE.REJECTED)) { 
+141 			setState(STATE.WAITING); 
+142 		} else { 
+143 			ui.beep(); 
+144 		} 
 	}
 
 
