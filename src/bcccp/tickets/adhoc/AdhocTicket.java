@@ -15,9 +15,14 @@ public class AdhocTicket implements IAdhocTicket {
 	private long exitDateTime;
 	private float charge;
 	private String barcode;
+
+        // Defining an enum
         private enum TICKET_STATE {Ticket_Issued, Car_Parked, Ticket_Paid, Car_Exited}
 	
+        //Defining an enum variable
         private TICKET_STATE ticket_State;
+
+	//Overrided constructor 
 
 	public AdhocTicket(String carparkId, int ticketNo, String barcode) {
         this.carparkId = carparkId;
@@ -47,28 +52,29 @@ public class AdhocTicket implements IAdhocTicket {
 
 	@Override
 	public void enter(long dateTime) {
-		// TODO Auto-generated method stub
+		this.entryDateTime = dateTime;
 		
 	}
 
 
 	@Override
 	public long getEntryDateTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		Date d = new Date();
+		return d.getTime();
 	}
 
-
+        //This overrided method will return the status
 	@Override
 	public boolean isCurrent() {
-		// TODO Auto-generated method stub
-		return false;
+		return entryDateTime > 0 && paidDateTime == 0;
 	}
 
 
 	@Override
 	public void pay(long dateTime, float charge) {
-		// TODO Auto-generated method stub
+		paidDateTime = dateTime;
+
+    		this.charge = charge;
 		
 	}
 
