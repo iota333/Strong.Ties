@@ -29,23 +29,42 @@ public class AdhocTicketDAO  implements IAdhocTicketDAO  {
  
      		list.add(ticket); 
 
-		return null;
+		return ticket;
 	}
 
 
 
 	@Override
 	public IAdhocTicket findTicketByBarcode(String barcode) {
-		// TODO Auto-generated method stub
-		return null;
+		IAdhocTicket ticket = null; 
+60 
+ 
+61    		Iterator<IAdhocTicket> itr = list.iterator(); 
+62 
+ 
+63     			while (itr.hasNext()) { 
+64 
+ 
+65       				if (itr.next().getBarcode().equals(barcode)) { 
+66 
+ 
+67         				ticket = itr.next(); 
+68 
+ 
+69         			break; 
+70       				} 
+71     			} 
+72 
+ 
+73     	return ticket; 
+
 	}
 
 
 
 	@Override
 	public List<IAdhocTicket> getCurrentTickets() {
-		// TODO Auto-generated method stub
-		return null;
+		return list.stream().filter(c -> c.isCurrent() == true).collect(Collectors.toList());
 	}
 
 	
