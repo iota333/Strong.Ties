@@ -1,5 +1,9 @@
+/* Student Name: Muhammad Javed
+   Student id: 11636599
+*/
 package bcccp.tickets.season;
 
+// Usage record class that used to implement Usage record interface 
 public class UsageRecord implements IUsageRecord {
 	
 	String ticketId;
@@ -7,41 +11,45 @@ public class UsageRecord implements IUsageRecord {
 	long endDateTime;
 	
 	
-	
+	//Constructor for Usage Record class
 	public UsageRecord(String ticketId, long startDateTime) {
-		//TODO Implement constructor
+		this.ticketId = ticketId;
+		this.startDateTime = startDateTime;
 	}
 
 
 
 	@Override
 	public void finalise(long endDateTime) {
-		// TODO Auto-generated method stub
+		UsageRecord newTicketUsage = new UsageRecord();
+		newTicketUsage.ticketId = ticketId;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		newTicketUsage.startDateTime = 1413972425000L;
+		newTicketUsage.endDateTime = 1413972425000L;
 		
 	}
 
 
-
+   //Method used for access start time
 	@Override
 	public long getStartTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.startDateTime;
 	}
 
-
+   //Method used for access end date time
 
 	@Override
 	public long getEndTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getEndTime();
 	}
 
 
-
+   //Method used for access season ticket id
 	@Override
 	public String getSeasonTicketId() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.ticketId;
 	}
 	
 	
