@@ -17,7 +17,7 @@ import bcccp.tickets.season.IUsageRecordFactory;
 
 public class SeasonTicketDAO implements ISeasonTicketDAO {
 
-	private IUsageRecordFactory factory;
+	private IUsageRecordFactory usage;
 private IUsageRecord currentUsage = null;
 	
 	private String ticketId;
@@ -35,7 +35,53 @@ private IUsageRecord currentUsage = null;
 		this.startValidPeriod = startValidPeriod;
 		this.endValidPeriod = endValidPeriod;
 	}
-	
+	public SeasonTicket() {
+	}
+	//Set ticket Id 
+	public void setTicketId(String ticketId) {
+		this.ticketId = ticketId;
+	}
+	//Set caroark id
+	public void setCarparkId(String carparkId) {
+		this.carparkId = carparkId;
+	}
+	//Set start valid period 
+	public void setStartValidPeriod(long startValidPeriod) {
+		this.startValidPeriod = startValidPeriod;
+	}
+	//Set end valid period 
+	public void setEndValidPeriod(long endValidPeriod) {
+		this.endValidPeriod = endValidPeriod;
+	}
+	//get ticket id 
+	@Override
+	public String getId() {	
+		return this.ticketId;
+	}
+	//Get carpark id
+	@Override
+	public String getCarparkId() {
+		
+		return this.carparkId;
+	}
+	//get Start Valid period 
+	@Override
+	public long getStartValidPeriod() {
+		
+		return this.startValidPeriod;
+	}
+
+	//Get End Valid Period 
+	@Override
+	public long getEndValidPeriod() {
+		
+		return this.endValidPeriod;
+	}
+	//Check inuse 
+	@Override
+	public boolean inUse() {
+		return false;
+	}
 	
 	public SeasonTicketDAO(IUsageRecordFactory factory) {
 		//TOD Implement constructor
