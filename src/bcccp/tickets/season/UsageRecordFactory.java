@@ -1,8 +1,10 @@
+/* Author: Muhammad Jaaved
+   Student Id:11636599 */
 package bcccp.tickets.season;
 
 public class UsageRecordFactory implements IUsageRecordFactory {
 
-ArrayList<SeasonTicket> ticketArrayList; 
+ArrayList<SeasonTicket> ticketArrayList; //to keep the list of all the session tickets been issued
 	
 
      public UsageRecordFactory(){ 
