@@ -9,14 +9,20 @@ public class UsageRecord implements IUsageRecord {
 	
 	
 	public UsageRecord(String ticketId, long startDateTime) {
-		//TODO Implement constructor
+		this.ticketId = ticketId;
+		this.startDateTime = startDateTime;
 	}
 
 
 
 	@Override
 	public void finalise(long endDateTime) {
-		// TODO Auto-generated method stub
+		UsageRecord newTicketUsage = new UsageRecord();
+		newTicketUsage.ticketId = ticketId;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		newTicketUsage.startDateTime = 1413972425000L;
+		newTicketUsage.endDateTime = 1413972425000L;
 		
 	}
 
