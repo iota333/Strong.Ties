@@ -83,58 +83,95 @@ private IUsageRecord currentUsage = null;
 		return false;
 	}
 	
-	public SeasonTicketDAO(IUsageRecordFactory factory) {
-		//TOD Implement constructor
-	}
-
-
-
-	@Override
-	public void registerTicket(ISeasonTicket ticket) {
-		// TODO Auto-generated method stub
+		@Override
+	public void recordUsage(IUsageRecord record) {
+		File writeUsageFile = new File("../Anonymous/UsageRecordData.txt");
+		if(writeUsageFile.exists()) {
+			try {
+				PrintWriter writeFile = new PrintWriter(writeUsageFile);
+				writeFile.print(record.getSeasonTicketId());
+				writeFile.print("\t");
+				writeFile.print(record.getStartTime());
+				writeFile.print("\t");
+				writeFile.print(record.getEndTime());
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 	}
 
-
-
 	@Override
-	public void deregisterTicket(ISeasonTicket ticket) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
-	public int getNumberOfTickets() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public ISeasonTicket findTicketById(String ticketId) {
-		// TODO Auto-generated method stub
+	public IUsageRecord getCurrentUsageRecord() {
 		return null;
 	}
-
-
-
+/**
+ * Method used to end usage of season Ticket 
+ *  @ Param long dateTime - This is the date time of end usage of season ticket
+ *  @ Return void 
+ */
 	@Override
-	public void recordTicketEntry(String ticketId) {
-		// TODO Auto-generated method stub
+	public void endUsage(long dateTime) {
+		
+		try {
+			
+			Scanner readUsageRecord = new Scanner(new File("../Anonymous/UsageRecordData.txt"));
+			
+			while(readUsageRecord.hasNext()){
+				String usageLine = readUsageRecord.nextLine();
+				if(usageLine.contains(ticketId)){
+					String[] usageRecArray = usageLine.split("\t");
+					UsageRecord usageRec = new UsageRecord();
+					usageRec.ticketId = usageRecArray[0];
+					usageRec.startDateTime = Date.parse(usageRecArray[1]);
+					usageRec.endDateTime = dateTime;
+			}
+		  }
+				
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 	}
-
-
-
+/**
+ * Method used to get current usage record 
+ *  @ Param 
+ *  @ Return List of usage records  
+ */
 	@Override
-	public void recordTicketExit(String ticketId) {
-		// TODO Auto-generated method stub
+	public List<IUsageRecord> getUsageRecords() {
 		
-	}
-	
+		
+		List<IUsageRecord> usageRecordList = new ArrayList<>();
+		
+		try {
+			
+			Scanner readUsageRecord = new Scanner(new File("../Anonymous/UsageRecordData.txt"));
+			
+			while(readUsageRecord.hasNext()){
+				String usageLine = readUsageRecord.nextLine();
+				if(usageLine.contains(ticketId)){
+					String[] usageRecArray = usageLine.split("\t");
+					UsageRecord usageRec = new UsageRecord();
+					usageRec.ticketId = usageRecArray[0];
+					usageRec.startDateTime = Date.parse(usageRecArray[1]);
+					
+					usageRecordList.add(usageRec);
+				}
+			}
+				
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			return usageRecordList;
+			
+		}
+
+
+}
+
+
 	
 	
 }
