@@ -23,7 +23,14 @@ public class PaystationController
 
 	@Override
 	public void ticketInserted(String barcode) {
-		// TODO Auto-generated method stub
+		if (state.equals(STATE.WAITING)) {
+			if (carpark.isSeasonTicketValid(barcode) && !carpark.isSeasonTicketInUse(barcode)) {
+				 
+			}
+		} else {
+			ui.beep();
+		}
+	}
 		
 	}
 
