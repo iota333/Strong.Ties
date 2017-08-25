@@ -1,5 +1,7 @@
 package bcccp.carpark.entry;
 
+//Code to enter car park
+
 public interface IEntryUI {
 	public void registerController(IEntryController controller);
 	public void deregisterController();
