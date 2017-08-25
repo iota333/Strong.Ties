@@ -78,26 +78,76 @@ public class SeasonTicket implements ISeasonTicket {
 
 	@Override
 	public void recordUsage(IUsageRecord record) {
-		// TODO Auto-generated method stub
+		File writeUsageFile = new File("../Anonymous/UsageRecordData.txt"); 
+ 		if(writeUsageFile.exists()) { 
+ 			try { 
+ 				PrintWriter writeFile = new PrintWriter(writeUsageFile); 
+ 				writeFile.print(record.getSeasonTicketId()); 
+ 				writeFile.print("\t"); 
+ 				writeFile.print(record.getStartTime()); 
+ 				writeFile.print("\t"); 
+ 				writeFile.print(record.getEndTime()); 
+ 			} catch (FileNotFoundException e) { 
+ 				e.printStackTrace(); 
+ 			} 
+ 		} 
+
 		
 	}
 
 	@Override
 	public IUsageRecord getCurrentUsageRecord() {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
 	public void endUsage(long dateTime) {
-		// TODO Auto-generated method stub
+		try { 
+ 			 
+ 			Scanner readUsageRecord = new Scanner(new File("../Anonymous/UsageRecordData.txt")); 
+ 			 
+ 			while(readUsageRecord.hasNext()){ 
+ 				String usageLine = readUsageRecord.nextLine(); 
+ 				if(usageLine.contains(ticketId)){ 
+ 					String[] usageRecArray = usageLine.split("\t"); 
+ 					UsageRecord usageRec = new UsageRecord(); 
+ 					usageRec.ticketId = usageRecArray[0]; 
+ 					usageRec.startDateTime = Date.parse(usageRecArray[1]); 
+ 					usageRec.endDateTime = dateTime; 
+ 			} 
+ 		  } 
+ 				 
+ 		} catch (FileNotFoundException e) { 
+ 			e.printStackTrace(); 
+ 		} 
+
 		
 	}
 
 	@Override
 	public List<IUsageRecord> getUsageRecords() {
-		// TODO Auto-generated method stub
-		return null;
+		List<IUsageRecord> usageRecordList = new ArrayList<>();
+		
+		try {
+			
+			Scanner readUsageRecord = new Scanner(new File("../Anonymous/UsageRecordData.txt"));
+			
+			while(readUsageRecord.hasNext()){
+				String usageLine = readUsageRecord.nextLine();
+				if(usageLine.contains(ticketId)){
+					String[] usageRecArray = usageLine.split("\t");
+					UsageRecord usageRec = new UsageRecord();
+					usageRec.ticketId = usageRecArray[0];
+					usageRec.startDateTime = Date.parse(usageRecArray[1]);
+					
+					usageRecordList.add(usageRec);
+				}
+			}
+				
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			return usageRecordList;
 	}
 
 
