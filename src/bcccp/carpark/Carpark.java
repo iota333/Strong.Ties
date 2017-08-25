@@ -22,7 +22,7 @@ public class Carpark implements ICarpark {
 	private ISeasonTicketDAO seasonTicketDAO;
 	
 	
-	
+	// Created constructor
 	public Carpark(String name, int capacity, 
 			IAdhocTicketDAO adhocTicketDAO, 
 			ISeasonTicketDAO seasonTicketDAO) {
