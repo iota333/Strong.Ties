@@ -1,3 +1,7 @@
+/* Student name : Muhammad Javed
+   Student Id :11636599 
+*/
+
 package bcccp.tickets.season;
 
 import java.util.ArrayList;
@@ -97,7 +101,7 @@ public class SeasonTicket implements ISeasonTicket {
 
 	@Override
 	public IUsageRecord getCurrentUsageRecord() {
-		
+		return null;
 	}
 
 	@Override
